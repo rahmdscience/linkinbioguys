@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rahmad Sains — Links</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="bg-white text-black selection:bg-black selection:text-white">
+    <audio id="bg-audio" loop preload="none">
+      <source
+        src="https://cdn.pixabay.com/audio/2022/10/25/audio_541e6f1e43.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <div
+      id="toast-container"
+      class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 items-center"
+    ></div>
+
+    <nav
+      id="top-nav"
+      class="fixed top-0 left-0 right-0 z-50 px-4 py-4 transition-all duration-300 ease-in-out bg-white border-b-4 border-black"
+    >
+      <div class="max-w-lg mx-auto flex items-center justify-between">
+        <div
+          class="flex items-center gap-2 text-[11px] font-black tracking-widest uppercase"
+        >
+          <div class="w-2.5 h-2.5 bg-black dot-pulse"></div>
+          <span id="view-count">0</span> VIEWS
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            onclick="toggleBgMusic()"
+            class="w-10 h-10 border-4 border-black bg-white flex items-center justify-center hover:bg-black hover:text-white transition-colors"
+            title="Music"
+            id="music-btn"
+          >
+            <i
+              data-lucide="music"
+              class="w-5 h-5 music-spin"
+              id="music-icon"
+            ></i>
+          </button>
+          <button
+            onclick="shareProfile()"
+            class="w-10 h-10 border-4 border-black bg-white flex items-center justify-center hover:bg-black hover:text-white transition-colors"
+            title="Share"
+          >
+            <i data-lucide="share-2" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="relative z-10 max-w-lg mx-auto px-4 pt-36 pb-20 stagger">
+      <section class="flex flex-col items-center text-center mb-12">
+        <div
+          class="w-28 h-28 rounded-none overflow-hidden border-4 border-black bg-white shadow-solid mb-5"
+        >
+          <img
+            src="media/rahmadsainspfp.jpg"
+            alt="Rahmad Sains"
+            class="w-full h-full object-cover grayscale"
+          />
+        </div>
+        <h1
+          class="text-4xl font-black tracking-tighter text-black mb-1 uppercase"
+        >
+          Rahmad Sains
+        </h1>
+        <p
+          class="text-xs font-bold tracking-widest uppercase border-y-2 border-black py-1 px-3 mt-2"
+        >
+          University Student · Creator · Learner
+        </p>
+        <div
+          class="flex items-center gap-2 mt-4 text-[11px] font-bold tracking-widest uppercase"
+        >
+          <i data-lucide="map-pin" class="w-4 h-4"></i>
+          <span>Palembang, ID</span>
+        </div>
+      </section>
+
+      <section class="mb-10">
+        <a
+          href="https://rahmadsains.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          onclick="trackClick(event, 'Website')"
+          class="bg-black text-white border-4 border-black flex items-center gap-4 p-4 block relative overflow-hidden transition-all hover:bg-white hover:text-black hover:-translate-y-1 hover:-translate-x-1 hover:shadow-solid group"
+        >
+          <div
+            class="w-12 h-12 border-4 border-white bg-black flex items-center justify-center flex-shrink-0 group-hover:border-black group-hover:bg-white transition-colors"
+          >
+            <i data-lucide="globe" class="w-6 h-6"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-lg font-black uppercase">Website</span>
+              <span
+                class="text-[9px] font-black bg-white text-black border-2 border-white px-2 py-0.5 uppercase tracking-widest group-hover:bg-black group-hover:text-white group-hover:border-black transition-colors"
+                >MAIN</span
+              >
+            </div>
+            <span class="text-xs font-bold tracking-widest"
+              >rahmadsains.com</span
+            >
+          </div>
+          <i
+            data-lucide="arrow-up-right"
+            class="w-6 h-6 flex-shrink-0 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+          ></i>
+        </a>
+      </section>
+
+      <section class="mb-10">
+        <div class="section-heading">
+          <span class="text">SOCIAL LINKS</span>
+          <span class="line"></span>
+        </div>
+        <div class="flex flex-col gap-4">
+          <a
+            href="https://instagram.com/rahmdsai"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="trackClick(event, 'Instagram')"
+            class="paper-card flex items-center gap-4 p-4 block relative"
+          >
+            <div
+              class="w-12 h-12 flex items-center justify-center flex-shrink-0 card-icon"
+            >
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.822a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"
+                />
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <span
+                class="text-sm font-black uppercase tracking-wide card-label"
+                >Instagram</span
+              >
+              <p class="text-xs font-bold mt-0.5 card-sub">@rahmdsai</p>
+            </div>
+            <i
+              data-lucide="arrow-right"
+              class="w-6 h-6 card-arrow flex-shrink-0"
+            ></i>
+          </a>
+
+          <a
+            href="https://tiktok.com/@rahmdsains"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="trackClick(event, 'TikTok')"
+            class="paper-card flex items-center gap-4 p-4 block relative"
+          >
+            <div
+              class="w-12 h-12 flex items-center justify-center flex-shrink-0 card-icon"
+            >
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15.2a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.86a8.28 8.28 0 0 0 4.76 1.5v-3.4a4.85 4.85 0 0 1-1-.27z"
+                />
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <span
+                class="text-sm font-black uppercase tracking-wide card-label"
+                >TikTok</span
+              >
+              <p class="text-xs font-bold mt-0.5 card-sub">@rahmdsains</p>
+            </div>
+            <i
+              data-lucide="arrow-right"
+              class="w-6 h-6 card-arrow flex-shrink-0"
+            ></i>
+          </a>
+
+          <a
+            href="https://github.com/rahmdscience"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="trackClick(event, 'GitHub')"
+            class="paper-card flex items-center gap-4 p-4 block relative"
+          >
+            <div
+              class="w-12 h-12 flex items-center justify-center flex-shrink-0 card-icon"
+            >
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                />
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <span
+                class="text-sm font-black uppercase tracking-wide card-label"
+                >GitHub</span
+              >
+              <p class="text-xs font-bold mt-0.5 card-sub">rahmdscience</p>
+            </div>
+            <i
+              data-lucide="arrow-right"
+              class="w-6 h-6 card-arrow flex-shrink-0"
+            ></i>
+          </a>
+
+          <a
+            href="https://open.spotify.com/user/rahmadsains"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="trackClick(event, 'Spotify')"
+            class="paper-card flex items-center gap-4 p-4 block relative"
+          >
+            <div
+              class="w-12 h-12 flex items-center justify-center flex-shrink-0 card-icon"
+            >
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"
+                />
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <span
+                class="text-sm font-black uppercase tracking-wide card-label"
+                >Spotify</span
+              >
+              <p class="text-xs font-bold mt-0.5 card-sub">
+                My playlist & activity
+              </p>
+            </div>
+            <i
+              data-lucide="arrow-right"
+              class="w-6 h-6 card-arrow flex-shrink-0"
+            ></i>
+          </a>
+        </div>
+      </section>
+
+      <section class="mb-10">
+        <div class="section-heading">
+          <span class="text">PROJECTS</span>
+          <span class="line"></span>
+        </div>
+        <div class="flex flex-col gap-4">
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="trackClick(event, 'Project: Portfolio')"
+            class="paper-card flex items-center gap-4 p-4 block relative"
+          >
+            <div
+              class="w-12 h-12 flex items-center justify-center flex-shrink-0 card-icon"
+            >
+              <i data-lucide="layout-dashboard" class="w-6 h-6"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <span
+                class="text-sm font-black uppercase tracking-wide card-label"
+                >Portfolio Website</span
+              >
+              <p class="text-xs font-bold mt-0.5 card-sub">
+                Personal modern stack
+              </p>
+            </div>
+            <i
+              data-lucide="arrow-right"
+              class="w-6 h-6 card-arrow flex-shrink-0"
+            ></i>
+          </a>
+
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="trackClick(event, 'Project: CLI Tool')"
+            class="paper-card flex items-center gap-4 p-4 block relative"
+          >
+            <div
+              class="w-12 h-12 flex items-center justify-center flex-shrink-0 card-icon"
+            >
+              <i data-lucide="terminal" class="w-6 h-6"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <span
+                class="text-sm font-black uppercase tracking-wide card-label"
+                >CLI Automation Tool</span
+              >
+              <p class="text-xs font-bold mt-0.5 card-sub">
+                Python task scripts
+              </p>
+            </div>
+            <i
+              data-lucide="arrow-right"
+              class="w-6 h-6 card-arrow flex-shrink-0"
+            ></i>
+          </a>
+
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="trackClick(event, 'Project: API')"
+            class="paper-card flex items-center gap-4 p-4 block relative"
+          >
+            <div
+              class="w-12 h-12 flex items-center justify-center flex-shrink-0 card-icon"
+            >
+              <i data-lucide="server" class="w-6 h-6"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <span
+                class="text-sm font-black uppercase tracking-wide card-label"
+                >REST API Service</span
+              >
+              <p class="text-xs font-bold mt-0.5 card-sub">
+                Backend API & docs
+              </p>
+            </div>
+            <i
+              data-lucide="arrow-right"
+              class="w-6 h-6 card-arrow flex-shrink-0"
+            ></i>
+          </a>
+        </div>
+      </section>
+
+      <section class="mb-10">
+        <div class="section-heading">
+          <span class="text">GEAR & PRODUCTS</span>
+          <span class="line"></span>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <a
+            href="https://shopee.co.id/search?keyword=mechanical+keyboard"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="trackClick(event, 'Product: Keyboard')"
+            class="product-card block"
+          >
+            <div
+              class="relative aspect-[4/3] overflow-hidden bg-black border-b-4 border-black"
+            >
+              <img
+                src="https://picsum.photos/seed/mech-kb-bw/400/300.jpg"
+                alt="Keyboard"
+                class="prod-img w-full h-full object-cover grayscale"
+              />
+              <div class="absolute top-2 right-2">
+                <span
+                  class="shopee-badge text-[9px] font-black uppercase tracking-widest text-black bg-white border-2 border-black px-2 py-1"
+                  >Shopee</span
+                >
+              </div>
+            </div>
+            <div class="p-3">
+              <h4 class="text-xs font-black uppercase truncate mb-1">
+                Mechanical Keyboard
+              </h4>
+              <span class="text-xs font-black">RP 350K</span>
+            </div>
+          </a>
+
+          <a
+            href="https://shopee.co.id/search?keyword=wireless+mouse+gaming"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="trackClick(event, 'Product: Mouse')"
+            class="product-card block"
+          >
+            <div
+              class="relative aspect-[4/3] overflow-hidden bg-black border-b-4 border-black"
+            >
+              <img
+                src="https://picsum.photos/seed/wireless-mouse-bw/400/300.jpg"
+                alt="Mouse"
+                class="prod-img w-full h-full object-cover grayscale"
+              />
+              <div class="absolute top-2 right-2">
+                <span
+                  class="shopee-badge text-[9px] font-black uppercase tracking-widest text-black bg-white border-2 border-black px-2 py-1"
+                  >Shopee</span
+                >
+              </div>
+            </div>
+            <div class="p-3">
+              <h4 class="text-xs font-black uppercase truncate mb-1">
+                Wireless Mouse
+              </h4>
+              <span class="text-xs font-black">RP 150K</span>
+            </div>
+          </a>
+
+          <a
+            href="https://shopee.co.id/search?keyword=usb+hub+7+port"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="trackClick(event, 'Product: USB Hub')"
+            class="product-card block"
+          >
+            <div
+              class="relative aspect-[4/3] overflow-hidden bg-black border-b-4 border-black"
+            >
+              <img
+                src="https://picsum.photos/seed/usb-hub-bw/400/300.jpg"
+                alt="USB Hub"
+                class="prod-img w-full h-full object-cover grayscale"
+              />
+              <div class="absolute top-2 right-2">
+                <span
+                  class="shopee-badge text-[9px] font-black uppercase tracking-widest text-black bg-white border-2 border-black px-2 py-1"
+                  >Shopee</span
+                >
+              </div>
+            </div>
+            <div class="p-3">
+              <h4 class="text-xs font-black uppercase truncate mb-1">
+                USB Hub 7-Port
+              </h4>
+              <span class="text-xs font-black">RP 89K</span>
+            </div>
+          </a>
+
+          <a
+            href="https://shopee.co.id/search?keyword=monitor+light+bar"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="trackClick(event, 'Product: Light Bar')"
+            class="product-card block"
+          >
+            <div
+              class="relative aspect-[4/3] overflow-hidden bg-black border-b-4 border-black"
+            >
+              <img
+                src="https://picsum.photos/seed/light-bar-bw/400/300.jpg"
+                alt="Monitor Light"
+                class="prod-img w-full h-full object-cover grayscale"
+              />
+              <div class="absolute top-2 right-2">
+                <span
+                  class="shopee-badge text-[9px] font-black uppercase tracking-widest text-black bg-white border-2 border-black px-2 py-1"
+                  >Shopee</span
+                >
+              </div>
+            </div>
+            <div class="p-3">
+              <h4 class="text-xs font-black uppercase truncate mb-1">
+                Monitor Light Bar
+              </h4>
+              <span class="text-xs font-black">RP 120K</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="mb-10">
+        <div class="section-heading">
+          <span class="text">CONTACT ME</span>
+          <span class="line"></span>
+        </div>
+        <div class="bg-white border-4 border-black p-6 shadow-solid">
+          <form id="contact-form" onsubmit="sendMessage(event)">
+            <div class="mb-4">
+              <label
+                class="block text-xs font-black uppercase tracking-widest mb-2"
+                >Name</label
+              >
+              <input
+                type="text"
+                name="name"
+                required
+                placeholder="[ ENTER NAME ]"
+                class="paper-input"
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                class="block text-xs font-black uppercase tracking-widest mb-2"
+                >Email</label
+              >
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="[ ENTER EMAIL ]"
+                class="paper-input"
+              />
+            </div>
+            <div class="mb-5">
+              <label
+                class="block text-xs font-black uppercase tracking-widest mb-2"
+                >Message</label
+              >
+              <textarea
+                name="message"
+                rows="3"
+                required
+                placeholder="[ YOUR MESSAGE... ]"
+                class="paper-input resize-none"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              id="send-btn"
+              class="paper-btn flex items-center justify-center gap-3"
+            >
+              <i data-lucide="send" class="w-5 h-5" id="send-icon"></i>
+              <span id="send-text">SUBMIT</span>
+            </button>
+          </form>
+          <div id="success-state" class="hidden text-center py-8">
+            <div
+              class="w-16 h-16 border-4 border-black bg-black text-white flex items-center justify-center mx-auto mb-4"
+            >
+              <i data-lucide="check" class="w-8 h-8 stroke-[3]"></i>
+            </div>
+            <h4 class="text-lg font-black uppercase tracking-widest mb-1">
+              MESSAGE SENT
+            </h4>
+            <p class="text-xs font-bold uppercase tracking-widest">
+              I'll reply shortly.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <a
+          href="mailto:rsainsalhafidz@gmail.com"
+          onclick="trackClick(event, 'Email')"
+          class="paper-card flex items-center gap-4 p-4 block relative"
+        >
+          <div
+            class="w-12 h-12 flex items-center justify-center flex-shrink-0 card-icon"
+          >
+            <i data-lucide="mail" class="w-6 h-6"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <span class="text-sm font-black uppercase tracking-wide card-label"
+              >Direct Email</span
+            >
+            <p class="text-xs font-bold mt-0.5 card-sub">
+              rsainsalhafidz@gmail.com
+            </p>
+          </div>
+          <i
+            data-lucide="arrow-right"
+            class="w-6 h-6 card-arrow flex-shrink-0"
+          ></i>
+        </a>
+      </section>
+
+      <footer class="text-center pt-8 border-t-4 border-black">
+        <p class="text-sm font-black tracking-widest uppercase mb-1">
+          CREATED BY RAHMAD SAINS
+        </p>
+        <p class="text-[10px] font-bold tracking-widest uppercase">
+          © 2026 ALL RIGHTS RESERVED.
+        </p>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
