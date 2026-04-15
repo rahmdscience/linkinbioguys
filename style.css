@@ -6,11 +6,25 @@
   box-sizing: border-box;
 }
 
-/* Kursor Brutalist untuk seluruh body (Saran 4) */
 body {
   font-family: "Inter", sans-serif;
   overflow-x: hidden;
   cursor: crosshair;
+  transition:
+    background-color 0s,
+    filter 0s;
+}
+
+/* Invert Mode CSS */
+html.invert-mode {
+  filter: invert(1);
+  background-color: #000;
+}
+/* Menjaga agar gambar dan media tidak terlihat aneh saat di-invert */
+html.invert-mode img,
+html.invert-mode video,
+html.invert-mode .invert-ignore {
+  filter: invert(1) grayscale(100%);
 }
 
 /* Kursor kotak untuk link dan tombol */
@@ -42,10 +56,10 @@ label,
   box-shadow: 6px 6px 0 #000000;
 }
 
-/* === MARQUEE ANIMATION (Saran 2) === */
+/* === MARQUEE ANIMATION === */
 .marquee-content {
   display: inline-block;
-  animation: marquee 10s linear infinite;
+  animation: marquee 15s linear infinite;
 }
 @keyframes marquee {
   0% {
@@ -53,10 +67,10 @@ label,
   }
   100% {
     transform: translateX(-50%);
-  } /* Bergeser 50% karena konten diduplikasi di HTML agar looping mulus */
+  }
 }
 
-/* === GLITCH HOVER EFFECT (Saran 3) === */
+/* === GLITCH HOVER EFFECT === */
 .glitch-container {
   transition: all 0.2s ease-in-out;
 }

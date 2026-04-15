@@ -1,7 +1,128 @@
-// Init Lucide
 lucide.createIcons();
 
-// === Background Music ===
+// === SOUND EFFECTS ===
+const hoverSfx = document.getElementById("sfx-hover");
+const clickSfx = document.getElementById("sfx-click");
+hoverSfx.volume = 0.15; // Suara hover yang sangat halus
+clickSfx.volume = 0.4; // Suara klik yang sedikit lebih keras
+
+// Pasang efek suara mekanikal pada elemen yang dapat diklik
+document.querySelectorAll("a, button, .cursor-pointer").forEach((el) => {
+  el.addEventListener("mouseenter", () => {
+    hoverSfx.currentTime = 0;
+    hoverSfx.play().catch(() => {});
+  });
+  el.addEventListener("mousedown", () => {
+    clickSfx.currentTime = 0;
+    clickSfx.play().catch(() => {});
+  });
+});
+
+// === TERMINAL LOADING SCREEN ===
+const loadingScreen = document.getElementById("loading-screen");
+const loadingText = document.getElementById("loading-text");
+const terminalMsgs = [
+  "> INITIALIZING SYSTEM...",
+  "> LOADING ASSETS...",
+  "> ESTABLISHING SECURE CONNECTION...",
+  "> WELCOME, RAHMAD SAINS.",
+];
+let msgIdx = 0;
+let charIdx = 0;
+
+function typeWriter() {
+  if (msgIdx < terminalMsgs.length) {
+    if (charIdx < terminalMsgs[msgIdx].length) {
+      loadingText.innerHTML += terminalMsgs[msgIdx].charAt(charIdx);
+      charIdx++;
+      setTimeout(typeWriter, 30); // Kecepatan ketik
+    } else {
+      loadingText.innerHTML += "<br><br>";
+      msgIdx++;
+      charIdx = 0;
+      setTimeout(typeWriter, 300); // Jeda antar kalimat
+    }
+  } else {
+    setTimeout(() => {
+      loadingScreen.classList.add("-translate-y-full"); // Tarik layar ke atas
+    }, 800);
+  }
+}
+
+// === LIVE LOCAL TIME ===
+function updateLocalTime() {
+  const now = new Date();
+  // Gunakan zona waktu WIB (Asia/Jakarta)
+  const timeString = now.toLocaleTimeString("id-ID", {
+    timeZone: "Asia/Jakarta",
+    hour12: false,
+  });
+  document.getElementById("local-time").textContent =
+    "LOCAL TIME: " + timeString + " WIB";
+
+  // Logika Status Berdasarkan Waktu
+  const hour = parseInt(
+    now.toLocaleTimeString("en-US", {
+      timeZone: "Asia/Jakarta",
+      hour12: false,
+      hour: "numeric",
+    }),
+  );
+  let statusText = "ONLINE";
+  let statusColor = "text-white";
+
+  if (hour >= 0 && hour < 5) {
+    statusText = "LATE NIGHT CODING";
+    statusColor = "text-red-500";
+  } else if (hour >= 5 && hour < 8) {
+    statusText = "SLEEPING";
+    statusColor = "text-gray-400";
+  } else if (hour >= 8 && hour < 16) {
+    statusText = "AT CAMPUS";
+    statusColor = "text-white";
+  } else if (hour >= 20) {
+    statusText = "DEEP WORK";
+    statusColor = "text-white";
+  }
+
+  const statusEl = document.getElementById("local-status");
+  statusEl.textContent = statusText;
+  statusEl.className = `${statusColor} animate-pulse`;
+}
+setInterval(updateLocalTime, 1000);
+updateLocalTime();
+
+// === INVERT THEME (DARK MODE) ===
+let inverted = localStorage.getItem("invertTheme") === "true";
+if (inverted) document.documentElement.classList.add("invert-mode");
+
+function toggleInvert() {
+  inverted = !inverted;
+  document.documentElement.classList.toggle("invert-mode", inverted);
+  localStorage.setItem("invertTheme", inverted);
+  showToast(inverted ? "INVERT MODE ON" : "INVERT MODE OFF");
+}
+
+// === EASTER EGG (5 Clicks) ===
+let clickCount = 0;
+const profileTitle = document.getElementById("profile-title");
+const easterEggOverlay = document.getElementById("easter-egg");
+
+profileTitle.addEventListener("click", () => {
+  clickCount++;
+  if (clickCount === 5) {
+    easterEggOverlay.classList.remove("hidden");
+    easterEggOverlay.classList.add("flex");
+    clickCount = 0;
+  }
+});
+
+function closeEasterEgg() {
+  easterEggOverlay.classList.add("hidden");
+  easterEggOverlay.classList.remove("flex");
+}
+
+// === BACKGROUND MUSIC ===
 let bgMusicPlaying = false;
 const bgAudio = document.getElementById("bg-audio");
 
@@ -31,7 +152,7 @@ function toggleBgMusic() {
   }
 }
 
-// === Share ===
+// === SHARE ===
 function shareProfile() {
   if (navigator.share) {
     navigator.share({
@@ -46,7 +167,7 @@ function shareProfile() {
   }
 }
 
-// === Track Click + Ripple ===
+// === RIPPLE EFFECT & VIEWS ===
 function trackClick(e, name) {
   const card = e.currentTarget;
   const rect = card.getBoundingClientRect();
@@ -57,7 +178,6 @@ function trackClick(e, name) {
   card.appendChild(ripple);
   setTimeout(() => ripple.remove(), 500);
 
-  // Update View Count
   let totalViews = parseInt(localStorage.getItem("totalViews") || "89");
   totalViews += 1;
   localStorage.setItem("totalViews", totalViews.toString());
@@ -65,11 +185,9 @@ function trackClick(e, name) {
     totalViews.toLocaleString();
 }
 
-// === View & Message Count Initialization ===
 function initCounts() {
-  // Ambil data dari localStorage atau beri nilai awal
   let totalViews = parseInt(localStorage.getItem("totalViews") || "89");
-  let totalMsgs = parseInt(localStorage.getItem("totalMessages") || "17"); // Angka awal bebas
+  let totalMsgs = parseInt(localStorage.getItem("totalMessages") || "17");
 
   const elViews = document.getElementById("view-count");
   const elMsgs = document.getElementById("message-count");
@@ -80,7 +198,6 @@ function initCounts() {
     const p = Math.min((now - start) / 1500, 1);
     const eased = 1 - Math.pow(1 - p, 3);
 
-    // Animasi angka berjalan
     elViews.textContent = Math.round(totalViews * eased).toLocaleString();
     elMsgs.textContent = Math.round(totalMsgs * eased).toLocaleString();
 
@@ -89,7 +206,7 @@ function initCounts() {
   requestAnimationFrame(update);
 }
 
-// === Send Message (FormSubmit) ===
+// === FORM SUBMIT ===
 function sendMessage(e) {
   e.preventDefault();
   const form = e.target;
@@ -97,7 +214,6 @@ function sendMessage(e) {
   const sendText = document.getElementById("send-text");
   const sendIcon = document.getElementById("send-icon");
 
-  // Loading State
   sendText.textContent = "SENDING...";
   sendIcon.className =
     "spinner w-5 h-5 border-4 border-white/30 border-t-white rounded-full";
@@ -114,13 +230,11 @@ function sendMessage(e) {
   })
     .then((res) => {
       if (res.ok) {
-        // Tampilkan Sukses
         form.classList.add("hidden");
         document.getElementById("success-state").classList.remove("hidden");
         lucide.createIcons();
         showToast("SUCCESS");
 
-        // Tambah jumlah Message Count saat berhasil terkirim
         let currentMsgs = parseInt(
           localStorage.getItem("totalMessages") || "17",
         );
@@ -144,7 +258,6 @@ function sendMessage(e) {
     })
     .finally(() => {
       setTimeout(() => {
-        // Reset Button
         sendText.textContent = "SUBMIT";
         sendIcon.className = "w-5 h-5";
         sendIcon.setAttribute("data-lucide", "send");
@@ -155,7 +268,7 @@ function sendMessage(e) {
     });
 }
 
-// === Toast ===
+// === TOAST NOTIFICATION ===
 function showToast(msg) {
   const c = document.getElementById("toast-container");
   const t = document.createElement("div");
@@ -169,9 +282,8 @@ function showToast(msg) {
   }, 2200);
 }
 
-// === Scroll Hide Navbar ===
+// === HIDE NAVBAR ON SCROLL ===
 const topNav = document.getElementById("top-nav");
-
 window.addEventListener("scroll", () => {
   if (window.scrollY > 20) {
     topNav.classList.add(
@@ -188,6 +300,9 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// === Init ===
-// Panggil initCounts
-window.addEventListener("load", initCounts);
+// === INIT ===
+window.addEventListener("load", () => {
+  initCounts();
+  // Mulai animasi loading terminal
+  setTimeout(typeWriter, 500);
+});
