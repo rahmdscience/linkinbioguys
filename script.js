@@ -58,7 +58,7 @@ function trackClick(e, name) {
   setTimeout(() => ripple.remove(), 500);
 
   // Update View Count
-  let totalViews = parseInt(localStorage.getItem("totalViews") || "1247");
+  let totalViews = parseInt(localStorage.getItem("totalViews") || "89");
   totalViews += 1;
   localStorage.setItem("totalViews", totalViews.toString());
   document.getElementById("view-count").textContent =
@@ -68,8 +68,8 @@ function trackClick(e, name) {
 // === View & Message Count Initialization ===
 function initCounts() {
   // Ambil data dari localStorage atau beri nilai awal
-  let totalViews = parseInt(localStorage.getItem("totalViews") || "1247");
-  let totalMsgs = parseInt(localStorage.getItem("totalMessages") || "42"); // Angka awal bebas
+  let totalViews = parseInt(localStorage.getItem("totalViews") || "89");
+  let totalMsgs = parseInt(localStorage.getItem("totalMessages") || "17"); // Angka awal bebas
 
   const elViews = document.getElementById("view-count");
   const elMsgs = document.getElementById("message-count");
@@ -122,7 +122,7 @@ function sendMessage(e) {
 
         // Tambah jumlah Message Count saat berhasil terkirim
         let currentMsgs = parseInt(
-          localStorage.getItem("totalMessages") || "42",
+          localStorage.getItem("totalMessages") || "17",
         );
         currentMsgs += 1;
         localStorage.setItem("totalMessages", currentMsgs.toString());
