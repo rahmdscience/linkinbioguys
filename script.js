@@ -57,21 +57,33 @@ function trackClick(e, name) {
   card.appendChild(ripple);
   setTimeout(() => ripple.remove(), 500);
 
-  let total = parseInt(localStorage.getItem("totalViews") || "1247");
-  total += 1;
-  localStorage.setItem("totalViews", total.toString());
-  document.getElementById("view-count").textContent = total.toLocaleString();
+  // Update View Count
+  let totalViews = parseInt(localStorage.getItem("totalViews") || "1247");
+  totalViews += 1;
+  localStorage.setItem("totalViews", totalViews.toString());
+  document.getElementById("view-count").textContent =
+    totalViews.toLocaleString();
 }
 
-// === View Count ===
-function initViews() {
-  let total = parseInt(localStorage.getItem("totalViews") || "1247");
-  const el = document.getElementById("view-count");
+// === View & Message Count Initialization ===
+function initCounts() {
+  // Ambil data dari localStorage atau beri nilai awal
+  let totalViews = parseInt(localStorage.getItem("totalViews") || "1247");
+  let totalMsgs = parseInt(localStorage.getItem("totalMessages") || "42"); // Angka awal bebas
+
+  const elViews = document.getElementById("view-count");
+  const elMsgs = document.getElementById("message-count");
+
   const start = performance.now();
+
   function update(now) {
     const p = Math.min((now - start) / 1500, 1);
     const eased = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.round(total * eased).toLocaleString();
+
+    // Animasi angka berjalan
+    elViews.textContent = Math.round(totalViews * eased).toLocaleString();
+    elMsgs.textContent = Math.round(totalMsgs * eased).toLocaleString();
+
     if (p < 1) requestAnimationFrame(update);
   }
   requestAnimationFrame(update);
@@ -102,10 +114,20 @@ function sendMessage(e) {
   })
     .then((res) => {
       if (res.ok) {
+        // Tampilkan Sukses
         form.classList.add("hidden");
         document.getElementById("success-state").classList.remove("hidden");
         lucide.createIcons();
         showToast("SUCCESS");
+
+        // Tambah jumlah Message Count saat berhasil terkirim
+        let currentMsgs = parseInt(
+          localStorage.getItem("totalMessages") || "42",
+        );
+        currentMsgs += 1;
+        localStorage.setItem("totalMessages", currentMsgs.toString());
+        document.getElementById("message-count").textContent =
+          currentMsgs.toLocaleString();
       } else throw new Error();
     })
     .catch(() => {
@@ -167,4 +189,5 @@ window.addEventListener("scroll", () => {
 });
 
 // === Init ===
-window.addEventListener("load", initViews);
+// Panggil initCounts (menggantikan initViews sebelumnya)
+window.addEventListener("load", initCounts);
