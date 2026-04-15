@@ -1,12 +1,12 @@
+// Init Lucide
 lucide.createIcons();
 
 // === SOUND EFFECTS ===
 const hoverSfx = document.getElementById("sfx-hover");
 const clickSfx = document.getElementById("sfx-click");
-hoverSfx.volume = 0.15; // Suara hover yang sangat halus
-clickSfx.volume = 0.4; // Suara klik yang sedikit lebih keras
+hoverSfx.volume = 0.15;
+clickSfx.volume = 0.4;
 
-// Pasang efek suara mekanikal pada elemen yang dapat diklik
 document.querySelectorAll("a, button, .cursor-pointer").forEach((el) => {
   el.addEventListener("mouseenter", () => {
     hoverSfx.currentTime = 0;
@@ -18,7 +18,7 @@ document.querySelectorAll("a, button, .cursor-pointer").forEach((el) => {
   });
 });
 
-// === TERMINAL LOADING SCREEN ===
+// === TERMINAL LOADING SCREEN (FIXED) ===
 const loadingScreen = document.getElementById("loading-screen");
 const loadingText = document.getElementById("loading-text");
 const terminalMsgs = [
@@ -43,8 +43,12 @@ function typeWriter() {
       setTimeout(typeWriter, 300); // Jeda antar kalimat
     }
   } else {
+    // Animasi selesai, hilangkan layar secara perlahan lalu sembunyikan total
     setTimeout(() => {
-      loadingScreen.classList.add("-translate-y-full"); // Tarik layar ke atas
+      loadingScreen.classList.add("-translate-y-full", "opacity-0");
+      setTimeout(() => {
+        loadingScreen.classList.add("hidden");
+      }, 700);
     }, 800);
   }
 }
@@ -52,7 +56,7 @@ function typeWriter() {
 // === LIVE LOCAL TIME ===
 function updateLocalTime() {
   const now = new Date();
-  // Gunakan zona waktu WIB (Asia/Jakarta)
+  // Zona waktu WIB
   const timeString = now.toLocaleTimeString("id-ID", {
     timeZone: "Asia/Jakarta",
     hour12: false,
@@ -303,6 +307,5 @@ window.addEventListener("scroll", () => {
 // === INIT ===
 window.addEventListener("load", () => {
   initCounts();
-  // Mulai animasi loading terminal
   setTimeout(typeWriter, 500);
 });
