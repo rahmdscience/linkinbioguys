@@ -189,5 +189,5 @@ window.addEventListener("scroll", () => {
 });
 
 // === Init ===
-// Panggil initCounts (menggantikan initViews sebelumnya)
+// Panggil initCounts
 window.addEventListener("load", initCounts);

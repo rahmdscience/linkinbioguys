@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-/* Kursor Brutalist untuk seluruh body */
+/* Kursor Brutalist untuk seluruh body (Saran 4) */
 body {
   font-family: "Inter", sans-serif;
   overflow-x: hidden;
@@ -18,7 +18,8 @@ a,
 button,
 input,
 textarea,
-label {
+label,
+.cursor-pointer {
   cursor:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Crect width='16' height='16' x='4' y='4' fill='black' stroke='white' stroke-width='2'/%3E%3C/svg%3E")
       12 12,
@@ -39,6 +40,54 @@ label {
 /* Pure Black & White Shadows */
 .shadow-solid {
   box-shadow: 6px 6px 0 #000000;
+}
+
+/* === MARQUEE ANIMATION (Saran 2) === */
+.marquee-content {
+  display: inline-block;
+  animation: marquee 10s linear infinite;
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  } /* Bergeser 50% karena konten diduplikasi di HTML agar looping mulus */
+}
+
+/* === GLITCH HOVER EFFECT (Saran 3) === */
+.glitch-container {
+  transition: all 0.2s ease-in-out;
+}
+.glitch-container:hover {
+  box-shadow: 10px 10px 0 #000;
+  transform: translate(-2px, -2px);
+}
+.glitch-container:hover img {
+  animation: glitch-flash 0.15s infinite;
+}
+@keyframes glitch-flash {
+  0% {
+    transform: translate(2px, 0) skewX(5deg);
+    filter: invert(100%);
+  }
+  25% {
+    transform: translate(-2px, 2px) skewX(-5deg);
+    filter: invert(0%);
+  }
+  50% {
+    transform: translate(0, -2px) skewX(2deg);
+    filter: invert(100%);
+  }
+  75% {
+    transform: translate(2px, 2px) skewX(-2deg);
+    filter: invert(0%);
+  }
+  100% {
+    transform: translate(-2px, 0) skewX(0);
+    filter: invert(100%);
+  }
 }
 
 /* Core card style — brutalist black & white */
