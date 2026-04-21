@@ -191,7 +191,7 @@ function trackClick(e, name) {
 
 function initCounts() {
   let totalViews = parseInt(localStorage.getItem("totalViews") || "89");
-  let totalMsgs = parseInt(localStorage.getItem("totalMessages") || "17");
+  let totalMsgs = parseInt(localStorage.getItem("totalMessages") || "5");
 
   const elViews = document.getElementById("view-count");
   const elMsgs = document.getElementById("message-count");
